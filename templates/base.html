@@ -1,22 +1,39 @@
+{% load compress %}
+{% load static %}
+
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Django Snacks</title>
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  {% endcompress %}
+
 </head>
-<body>
+<body class="bg-green-50">
   
-  <nav>
-    <a href="{% url 'snack_list' %}">Snack List</a>
+  <nav class="bg-green-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+    <div class="container flex flex-wrap items-center justify-between mx-auto">
+      <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+        <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+          <li>
+            <a href="{% url 'snack_list' %}" class="block py-2 pl-3 pr-4 text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-white" aria-current="page">Snack List</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-{% block content %}
-
-{% endblock content %}
-
+  <div class="container mx-auto mt-4">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
 </body>
 </html>
